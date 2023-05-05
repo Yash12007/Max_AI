@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash12007</title>
+</head>
+<body>
+    <video autoplay id="camera" width="100%" height="100%" style="opacity:0; position: absolute; top: 53px; left: 0px; cursor: pointer;" onclick="services()"></video>
+    <nav>
+        <ul>
+            <a class="btn" href="">Home</a>
+            <a class="btn" href="https://yash12007.blogspot.com/p/about.html">About</a>
+            <b id="Date"></b>
+        </ul>
+    </nav>
+    <div id="loading"></div>
+    <div id="main" class="words" contenteditable>
+        <p id="status">Status: Loading...</p>
+        <br>
+            <b style="color: white;" id="suggest">Tap on screen to introduce.</b>
+        </br>
+    </div>
+    <script>
+        function stt(){
+            var speech = true;
+            window.SpeechRecognition = window.SpeechRecognition
+                            || window.webkitSpeechRecognition;
+
+            const recognition = new SpeechRecognition();
+            recognition.interimResults = true;
+            const words = document.querySelector('.words');
+            
+            words.appendChild(document.getElementById("status"));
+
+            recognition.addEventListener('result', e => {
+                const transcript = Array.from(e.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('')
+
+                document.getElementById("status").innerHTML = transcript;
+                console.log(transcript);
+            });
+            
+            if (speech == true) {
+                recognition.start();
+                recognition.addEventListener('end', recognition.start);
+            }
+        }
+    </script>
+    </select>
+    <div id="slide-btn">
+        <a href="https://yash12007.blogspot.com"  class="btn">Blog</a>
+        <a href="https://yash12007.github.io/Max"  class="btn">Website</a>
+        <a href="https://www.github.com/Yash12007"  class="btn">Github</a>
+        <a href="https://www.replit.com/@Yash12007"  class="btn">Replit</a>
+        <a href="https://www.youtube.com/@Yash12007"  class="btn">Youtube</a>
+        <a href="https://www.fiverr.com/yash12007"  class="btn">Fiverr</a>
+        <a onclick="locationfinder()"  class="btn">Find me</a>
+        <a onclick="currentdate()"  class="btn">Date</a>
+    </div>
+    <div id="bottom">
+        <input type="text" placeholder="Search your query here..." id="query">
+        <button style="background: rgb(31, 31, 31); color: cyan; font: 14px arial; position: absolute; left: 68%; bottom: 10px; border-width: 0px; cursor:pointer;" onclick="search()">voice Search</button>
+        <button style="background: rgb(31, 31, 31); color: cyan; font: 14px arial; position: absolute; left: 55%; bottom: 10px; border-width: 0px; cursor:pointer;" onclick="searchURL()">Text search</button>
+    </div>
+</body>
+<style>
+    body{
+        background-color: black;
+        color: rgb(26, 255, 0);
+        font:14px Arial;
+        height: 100%;
+    }
+    .btn{
+        background-color: black;
+        color: cyan;
+        border-color: black;
+        border-width: 0px;
+        cursor: pointer;
+    }
+    nav{
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    ul{
+        height: 50px;
+        position: absolute;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+    #slide-btn{
+        position: absolute;
+        height: 500px;
+        width: 55px;
+        background-color: black;
+        left: 0px;
+        top: 150px;
+    }
+    #loading{
+        background-color: cyan;
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        left: 0px;
+    }
+    #bottom{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        height: 50px;
+        background-color: rgb(31, 31, 31);
+    }
+    input{
+        background-color: black;
+        color: cyan;
+        border-color: rgb(26, 255, 0);
+        border-width: 3px;
+        height: 30px;
+        width: 50%;
+        border-radius: 30px;
+        bottom: 0px;
+        position: absolute;
+        left: 0px;
+    }
+    #main{
+        position: absolute;
+        left: 0px;
+        top: 55px;
+    }
+</style>
+<script>
+    function currentdate(){
+        document.getElementById("Date").innerHTML=Date();
+    }
+    function locationfinder(){
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showposition);
+        }else{
+            alert("Not supported to your browser");
+        }
+    }
+    function showposition(position){
+        window.location.href = "https://www.google.com/maps/place/"+position.coords.latitude+"N+"+position.coords.longitude+"E/";
+    }
+    function services(){
+        var suggest = document.getElementById("suggest");
+        var wish = new SpeechSynthesisUtterance("Hello! nice to meet you! My name is Max. If you have any question then enter in the search box or use voice search.");
+        var speak = speechSynthesis.speak(wish);
+    }
+    function searchURL(){
+        var query = document.getElementById("query");
+        window.location.href = "https://www.google.com/search?igu=1&q="+query.value;
+    }
+    function search(){
+        var p = document.getElementById("status").innerHTML;
+        window.location.href = "https://www.google.com/search?igu=1&q="+p;
+    }
+    function loading(){
+        var status = document.getElementById("status");
+        status.innerHTML = "Status: Initializing...";
+        setTimeout(() =>{
+            status.innerHTML = "Status: You are "+(window.navigator.onLine ? 'On' : 'Off')+'line right now.';
+            document.getElementById("camera").setAttribute("style", "opacity:1; position: absolute; top: 53px; left: 0px;");
+        }, 1000);
+    }
+    setTimeout(() => {
+        loading();
+    }, 3000);
+    function camme(){
+        var video = document.getElementById("camera");
+        navigator.getUserMedia = navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia||navigator.oGetUserMedia;
+        if(navigator.getUserMedia){
+            navigator.getUserMedia({video:true}, handleVideo, videoError);
+        }
+        function handleVideo(stream){
+            video.srcObject=stream;
+            video.play();
+        }
+        function videoError(e){
+            console.log(e);
+        }
+    }
+    camme();
+    stt();
+</script>
+</html>
