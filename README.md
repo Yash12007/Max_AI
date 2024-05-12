@@ -1,6 +1,8 @@
 # Max_AI
 The world's most advanced Web AI
 
+<img src="https://github.com/Yash12007/Max_AI/blob/main/Max%20AI.png?raw=true" width="150px" height="150px">
+
 ## To use it for free
 1. Link: https://yash12007.github.io/Max_AI
 2. Chrome extension (coming soon)
