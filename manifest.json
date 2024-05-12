@@ -1,0 +1,10 @@
+{
+  "name": "Max AI",
+  "description": "An AI voice Assistant with GUI (Graphical User Interface) support. (c) 2024 Yash12007. All Rights Reserved.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "https://yash12007.github.io/Max_AI",
+    "default_icon": "Max AI.png"
+  }
+}
