@@ -15,6 +15,8 @@
     color: white;
     overflow: hidden;
     scroll-behavior: smooth;
+    width: 100%;
+    height: 720px;
   }
   #load {
     background-image: linear-gradient(to right, cyan, blue);
@@ -66,6 +68,7 @@
     width: 25%;
     height: 50%;
     border: 1px solid white;
+    border-radius: 10px;
   }
   #bottom-sec{
     background-image: linear-gradient(to right, cyan, blue);
@@ -87,6 +90,7 @@
     border: 1px solid white;
     display: grid;
     place-items: center;
+    border-radius: 10px;
   }
   #main{
     position: absolute;
@@ -134,7 +138,19 @@
     height: 50%;
     overflow: hidden;
     background: black;
+    border-radius: 10px;
     border: 1px solid white;
+  }#mapcover{
+    position: absolute;
+    top: 15%;
+    left: 60px;
+    width: 25%;
+    height: 50%;
+    overflow: hidden;
+    background: #00ffff;
+    border-radius: 10px;
+    border: 1px solid white;
+    opacity: 0.25;
   }
   #content{
     position: absolute;
@@ -160,6 +176,7 @@
     color: white;
     overflow: auto;
     background-size: cover;
+    border-radius: 10px;
   }
   #themecolor{
     background: #5100ff;
@@ -171,6 +188,18 @@
     height: 100%;
     right: 0;
     bottom: 0;
+  }#languagebox{
+    position: absolute;
+    top: -50000px;
+    width: 80%;
+    height: 80%;
+    border: 1px solid cyan;
+    background: #000;
+    color: white;
+  }::-webkit-scrollbar{
+    background: none;
+  }::-webkit-scrollbar-thumb{
+    background: none;
   }
 </style>
 <body data-bs-theme="dark">
@@ -178,6 +207,8 @@
   <canvas id="faceCanvas"></canvas>
   <canvas id="objectCanvas"></canvas>
   <div id="themecolor"></div>
+  <div id="unibeem">
+  </div>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="" style="color: cyan;">
@@ -187,14 +218,14 @@
         00:00
       </div>
       <div>
-        <button class="btn">
+        <button class="btn" onclick="localStorage.clear()">
           <i class="bi bi-box-arrow-in-right"></i>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
           </svg>
         </button>
-        <button class="btn">
+        <button class="btn" onclick="account()">
           <i class="bi bi-person-circle"></i>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -210,32 +241,29 @@
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <iframe id="Searchbox" frameborder="0" src="https://www.google.com/search?igu=1"></iframe>
+  <iframe id="Searchbox" frameborder="0" src="https://yash12007.github.io/Phoenix"></iframe>
   <div id="terminal">
     <p>Virtual (watch only) Terminal for Max AI</p>
     <p>&copy; 2024 Yash12007. All Rights Reserved.</p>
   </div>
   <div style="position: absolute;top: 58px;left: 0;bottom: 50px;width: 50px;background: black;display: grid;place-items: center;">
-    <button class="btn">
-      <i class="bi bi-tools"></i>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
-        <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
-      </svg>
-    </button>
-    <button class="btn">
+    <a href="https://github.com/Yash12007/Max_AI/fork" target="_blank" class="btn" >
+        <svg fill="currentColor" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
+            <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+        </svg>
+    </a>
+    <button class="btn" onclick="copy()">
       <i class="bi bi-share"></i>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
         <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
       </svg>
     </button>
-    <button class="btn">
-      <i class="bi bi-list-task"></i>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
-        <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
-        <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
-      </svg>
-    </button>
+    <a class="btn" href="https://wa.me/" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+        </svg>
+    </a>
     <a class="btn" href="tel:">
       <i class="bi bi-telephone"></i>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
@@ -262,6 +290,7 @@
       </iframe>
     </div>
   </div>
+  <div id="mapcover"></div>
   <div id="connect"></div>
   <div id="bottom-sec"></div>
   <div id="bottom">
@@ -274,11 +303,8 @@
           </svg>
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" onclick="handleVoiceAssistantClick()">Voice assistant [Ctrl+V]</a></li>
-          <li><a class="dropdown-item" onclick="handlePowerManagementClick()">Power management [Ctrl+Shift+P]</a></li>
-          <li><a class="dropdown-item" onclick="handleUnibeemClick()">Unibeem [Ctrl+Shift+U]</a></li>
-          <li><a class="dropdown-item" onclick="handleThrustersClick()">Thrusters [Ctrl+T]</a></li>
-          <li><a class="dropdown-item" onclick="handleRepelsersClick()">Repelsers [Ctrl+Win+R]</a></li>
+          <li><a class="dropdown-item" onclick="handleVoiceAssistantClick()">Voice assistant</a></li>
+          <li><a class="dropdown-item" onclick="handlePowerManagementClick()">Power management</a></li>
         </ul>
       </div>
       <div class="dropdown">
@@ -293,7 +319,7 @@
           <li><a class="dropdown-item" href="#">Storage</a></li>
           <li><a class="dropdown-item" href="#">Memory</a></li>
           <li><a class="dropdown-item" href="#">Temperature</a></li>
-          <li><a class="dropdown-item" href="#">Shutdown</a></li>
+          <li><a class="dropdown-item" onclick="close()">Shutdown</a></li>
         </ul>
       </div>
       <div class="dropdown">
@@ -306,8 +332,7 @@
         </button>
         <ul class="dropdown-menu">
           <li><button class="dropdown-item" onclick="settings()">Open settings</button></li>
-          <li><button class="dropdown-item" href="#">Appearance</button></li>
-          <li><button class="dropdown-item" href="#">Language</button></li>
+          <li><button class="dropdown-item" onclick="showlang()">Language</button></li>
         </ul>
       </div>
       <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
@@ -333,7 +358,7 @@
           </svg>
         </button>
       </div>
-      <button class="btn">
+      <button class="btn" onclick="imgclassify()">
         <i class="bi bi-fullscreen"></i>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fullscreen" viewBox="0 0 16 16">
           <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5M.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5"/>
@@ -346,13 +371,45 @@
           <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
         </svg>
       </button>
-      <button class="btn">
+      <button class="btn" onclick="playspotify()">
         <i class="bi bi-play-circle"></i>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
           <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"/>
         </svg>
       </button>
+    </div>
+    <div style="position: absolute; right: 10px; width: fit-content;">
+        <a href="https://facebook.com/yash12007" class="btn" style="color: #00f;">
+            <i class="bi bi-facebook"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+            </svg>
+        </a>
+        <a href="https://facebook.com/yash12007" class="btn" style="color: #ff008c;">
+            <i class="bi bi-instagram"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+            </svg>
+        </a>
+        <a href="https://x.com/_Yash12007_" class="btn" style="color: white;">
+            <i class="bi bi-twitter-x"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+            </svg>
+        </a>
+        <a href="https://linkedin.com/in/yash12007" class="btn" style="color: #4c4cfc;">
+            <i class="bi bi-linkedin"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+            </svg>
+        </a>
+        <a href="https://youtube.com/@Yash12007" class="btn" style="color: #f00;">
+            <i class="bi bi-youtube"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+            </svg>
+        </a>
     </div>
   </div>
   <div id="bottom-sec"></div>
@@ -380,21 +437,14 @@
       <button class="btn" id="closesettings" onclick="closesettings()">x</button>
     </div>
     <div style="position: absolute; top: 55px; overflow: auto; width: 100%; height: 80%;">
-      <b>Apearance</b>
-      <p>Change brightness</p>
-      <input type="range" class="form-control">
-      <p>Change font</p>
+      <b>Change font</b>
       <p>Enter your font name</p>
-      <input type="text" class="form-control">
+      <input id="font" type="text" class="form-control">
       <p>Enter font size</p>
-      <input type="number" class="form-control">
-      <p>Change theme</p>
-      <button class="btn">Light</button>
-      <br>
-      <b>Camera</b>
-      <p>Add target search</p>
-      <button class="btn">Yes</button>
-      <button class="btn">No</button>
+      <input id="fontsize" type="number" class="form-control">
+      <b>Browsing</b>
+      <p>Search engine (Enter home page URL)</p>
+      <input id="searchengine" type="text" class="form-control">
       <br>
     </div>
   </div>
@@ -413,17 +463,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr onclick="web2code()">
             <th scope="row">1</th>
             <td>Web2code</td>
             <td>v1.5</td>
           </tr>
-          <tr>
+          <tr onclick="Gmap()">
             <th scope="row">2</th>
             <td>Gmap</td>
             <td>v1.5</td>
           </tr>
-          <tr>
+          <tr onclick="settings()">
             <th scope="row">3</th>
             <td>Settings</td>
             <td>v1.5</td>
@@ -432,9 +482,103 @@
       </table>
     </div>
   </div>
+  <div id="languagebox">
+    <b style="position: absolute; top: 10px; left: 10px;">Language</b>
+    <button class="btn" style="position: absolute; right: 10px; top: 10px;" onclick="closelang()">x</button>
+    <br><br><br>
+    <button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('fr')">French</button>
+    <button onclick="changeLanguage('es')">Spanish</button>
+    <button onclick="changeLanguage('de')">German</button>
+    <button onclick="changeLanguage('it')">Italian</button>
+    <button onclick="changeLanguage('ja')">Japanese</button>
+    <button onclick="changeLanguage('ko')">Korean</button>
+    <button onclick="changeLanguage('ru')">Russian</button>
+    <button onclick="changeLanguage('zh')">Chinese</button>
+  </div>
   <script src="https://apis.google.com/js/api.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script>
+    function showlang(){
+        document.getElementById("languagebox").setAttribute("style", "top:10%; left:10%;");
+    }
+    function closelang(){
+        document.getElementById("languagebox").setAttribute("style", "top:-50000px; left:-50000px;");
+    }
+    function changeLanguage(langCode) {
+        document.body.lang = langCode;
+    }
+    function account(){
+        var windowFeatures = "height=600,width=800,resizable=yes,scrollbars=yes,status=yes";
+        var newwindow = window.open("https://yash12007.github.io/Sign-up", "_blank", windowFeatures);
+        newwindow = null;
+    }
+    function imgclassify(){
+        var windowFeatures = "height=600,width=800,resizable=yes,scrollbars=yes,status=yes";
+        var newwindow = window.open("https://yash12007.github.io/imgClasify", "_blank", windowFeatures);
+        newwindow = null;
+    }
+    function playspotify(){
+        var windowFeatures = "height=600,width=800,resizable=yes,scrollbars=yes,status=yes";
+        var newwindow = window.open("https://open.spotify.com/", "_blank", windowFeatures);
+        newwindow = null;
+    }
+    function web2code(){
+        var url = prompt("Enter URL of website", "");
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data);
+            navigator.clipboard.writeText(data)
+            .then(()=>{
+                alert("Code copied to clipboard!");
+            }).catch(()=>{
+                alert("Error occured!");
+            });
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Problem while fetching...");
+        });
+    }
+    function Gmap(){
+        var windowFeatures = "height=600,width=800,resizable=yes,scrollbars=yes,status=yes";
+        var newwindow = window.open("https://maps.google.com/", "_blank", windowFeatures);
+        newwindow = null;
+    }
+    function copy(){
+        navigator.clipboard.writeText('https://yash12007.github.io/Max_AI')
+        .then(() => {
+            console.log('Text copied to clipboard');
+            alert('Link copied to clipboard');
+        })
+        .catch(err => {
+            console.error('Error copying text: ', err);
+            alert('Error copying text: ' + err);
+        });
+    }
+    function contacts(){
+        var windowFeatures = "height=600,width=800,resizable=yes,scrollbars=yes,status=yes";
+        var newwindow = window.open("https://contacts.google.com/", "_blank", windowFeatures);
+        newwindow = null;
+    }
+    var searchengine = document.getElementById("searchengine");
+    searchengine.addEventListener("change", ()=>{
+        document.getElementById("Searchbox").src=searchengine.value;
+    });
+    var font = document.getElementById("font");
+    font.addEventListener("change", ()=>{
+        document.body.style.fontFamily=font.value;
+    });
+    var fontsize = document.getElementById("fontsize");
+    fontsize.addEventListener('change', ()=>{
+        document.body.style.fontSize=fontsize.value+'px';
+    });
     function propertise(){
       const osName = navigator.platform;
       const browserName = navigator.userAgent;
@@ -479,19 +623,11 @@
       changeapptitle('Applications');
     }
     function settings(){
+      document.getElementById("closeapp").click();
       document.getElementById('settings').setAttribute('style', 'top:10%; left:10%;');
     }
     function closesettings(){
-      if(confirm('Are you sure to save changes you have made?')==true){
-        savesettings();
-        terminal('settings have being saved successfully...');
-      } else{
-        terminal('Settings discard...');
-      }
       document.getElementById('settings').setAttribute('style', 'top:50000px; left:50000px;');
-    }
-    function savesettings(){
-      console.log('saving...');
     }
     function terminal(cmd){
       const terminalElement = document.getElementById('terminal');
@@ -565,12 +701,16 @@
             aurl = JSON.stringify(data.AbstractURL);
             terminal(JSON.stringify(data.AbstractURL));
             url = JSON.parse('"' + data.AbstractURL + '"');
-            document.getElementById('Searchbox').src=url;
-            document.getElementById('Searchbox').onload = function() {
-              var iframeDocument = document.getElementById('Searchbox').contentDocument;
-              var textFromIframe = iframeDocument;
-              terminal(textFromIframe);
-            };
+            if (url == ''){
+                document.getElementById("Searchbox").src="https://www.google.com/search?q="+command+"&igu=1";
+            } else{
+                document.getElementById('Searchbox').src=url;
+                document.getElementById('Searchbox').onload = function() {
+                var iframeDocument = document.getElementById('Searchbox').contentDocument;
+                var textFromIframe = iframeDocument;
+                terminal(textFromIframe);
+                };
+            }
         })
         .catch(error => {
           console.error('Error fetching data:', error);
@@ -608,16 +748,28 @@
       startButton.click();
     }
     function handlePowerManagementClick() {
-      console.log('Power management button clicked');
-    }
-    function handleUnibeemClick() {
-      console.log('Unibeem button clicked');
-    }
-    function handleThrustersClick() {
-      console.log('Thrusters button clicked');
-    }
-    function handleRepelsersClick() {
-      console.log('Repelsers button clicked');
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(function(battery) {
+                let charging = battery.charging;
+                let level = battery.level * 100 + "%";
+
+                battery.addEventListener('chargingchange', function() {
+                    let charging = battery.charging;
+                });
+
+                battery.addEventListener('levelchange', function() {
+                    let level = battery.level * 100 + "%";
+                });
+                if(charging == true){
+                    charging = 'charging';
+                } else{
+                    charging = 'discharging';
+                }
+                alert("Status: "+charging+"\nLevel: "+level);
+            });
+        } else {
+            console.log("Battery status API not supported.");
+        }
     }
   </script>
 </body>
